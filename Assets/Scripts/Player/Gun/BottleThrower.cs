@@ -13,7 +13,7 @@ public class BottleThrower : Weapon
     {
         if (Time.time >= nextTimeToFire)
         {
-            spawnPosition.localPosition = direction.normalized == Vector2.left ? new Vector3(-2.3f,1.2f,0) : new Vector3(2.3f,1.2f,0);
+            spawnPosition.localPosition = direction.normalized == Vector2.left ? new Vector3(2.3f,1.2f,0) : new Vector3(-2.3f,1.2f,0);
             nextTimeToFire = Time.time + 1f / fireRate;
             Ammo bottle = bullets.Dequeue();
             bottle.transform.position = spawnPosition.position;
