@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e0f0b5e83cdbb4d98d0912af7d72a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToReload: 1
+  timeToReload: 0.9
   bulletPrefab: {fileID: 4180567490816088839, guid: fe54987cc4c25794296a5ca6557bbe53, type: 3}
   spawnPosition: {fileID: 1074736103}
   fireRate: 3
