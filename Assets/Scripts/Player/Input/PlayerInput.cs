@@ -45,7 +45,7 @@ namespace Player.Input
             if (direction != Vector2.zero)
             {
                 fireDirection = direction;
-                spriteRenderer.flipY = direction != Vector2.right;
+                spriteRenderer.flipX = direction != Vector2.right;
                 targetTransform.Translate(direction * speed * Time.deltaTime);
             }
         }
