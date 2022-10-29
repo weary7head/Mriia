@@ -26,7 +26,7 @@ namespace Player.Gun
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
                 Bullet bullet = bullets.Dequeue();
-                laser.SetDirection(direction);
+                //laser.SetDirection(direction);
                 StartCoroutine(EnqueueBullet(bullet));
             }
         }

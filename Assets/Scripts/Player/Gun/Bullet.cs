@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _damage = 10f;
     private GameObject _target;
     private Enemy _enemy;
-    private Player _player;
+//    private Player _player;
     private Vector3 _direction;
 
     private void Update()
@@ -20,16 +20,16 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out _target))
         {
-            _target.GetDamage(_damage);
+         //   _target.GetDamage(_damage);
         }
         else if (other.gameObject.TryGetComponent(out _enemy))
         {
-            _enemy.GetDamage(_damage);
+        //    _enemy.GetDamage(_damage);
         }
-        else if (other.gameObject.TryGetComponent(out _player))
-        {
-            _player.GetDamage(_damage);
-        }
+        // else if (other.gameObject.TryGetComponent(out _player))
+        // {
+        // //    _player.GetDamage(_damage);
+        // }
         Destroy(this.gameObject);
     }
 
