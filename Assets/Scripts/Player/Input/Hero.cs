@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace Player.Input
 {
-    public class PlayerInput : MonoBehaviour
+    public class Hero : MonoBehaviour
     {
+        [SerializeField] private Animator animator;
         [SerializeField] private Gun.Gun gun;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform targetTransform;
@@ -12,6 +12,7 @@ namespace Player.Input
         private PlayerInputAction playerInputAction;
         private Vector2 direction;
         private Vector2 fireDirection;
+        private HeroAnimationState previouslyState;
 
         private void Awake()
         {
@@ -25,12 +26,16 @@ namespace Player.Input
 
         private void Start()
         {
+            SetState(HeroAnimationState.Idle);
             fireDirection = targetTransform.right;
         }
 
         private void Update()
         {
-            Move();
+            if ( playerInputAction.Player.Fire.IsPressed() == false)
+            {
+                Move();
+            }
             Fire();
         }
 
@@ -44,9 +49,14 @@ namespace Player.Input
             direction = playerInputAction.Player.Move.ReadValue<Vector2>();
             if (direction != Vector2.zero)
             {
+                SetState(HeroAnimationState.Walk);
                 fireDirection = direction;
                 spriteRenderer.flipX = direction != Vector2.right;
                 targetTransform.Translate(direction * speed * Time.deltaTime);
+            }
+            else
+            {
+                SetState(HeroAnimationState.Idle);
             }
         }
 
@@ -54,7 +64,32 @@ namespace Player.Input
         {
             if (playerInputAction.Player.Fire.IsPressed())
             {
+                SetState(HeroAnimationState.Fire);
                 gun.Shoot(fireDirection);
+            }
+        }
+        
+        private void SetState(HeroAnimationState state)
+        {
+            if (state == previouslyState)
+            {
+                return;
+            }
+            previouslyState = state;
+            switch (state)
+            {
+                case HeroAnimationState.Idle:
+                    animator.SetBool("Attack", false);
+                    animator.SetFloat("Move", 0f);
+                    break;
+                case HeroAnimationState.Walk:
+                    animator.SetBool("Attack", false);
+                    animator.SetFloat("Move", 1f);
+                    break;
+                case HeroAnimationState.Fire:
+                    animator.SetBool("Attack", true);
+                    animator.SetFloat("Move", 0f);
+                    break;
             }
         }
     }
