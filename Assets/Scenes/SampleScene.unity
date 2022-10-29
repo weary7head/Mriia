@@ -358,13 +358,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1497595083, guid: bfa5086989be6344f940e25fd109d0a3, type: 3}
+      propertyPath: fireRate
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497595083, guid: bfa5086989be6344f940e25fd109d0a3, type: 3}
+      propertyPath: generalBulletsCount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2795684965654790721, guid: bfa5086989be6344f940e25fd109d0a3, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2795684965654790721, guid: bfa5086989be6344f940e25fd109d0a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.68
+      value: 6.45
       objectReference: {fileID: 0}
     - target: {fileID: 2795684965654790721, guid: bfa5086989be6344f940e25fd109d0a3, type: 3}
       propertyPath: m_LocalPosition.y

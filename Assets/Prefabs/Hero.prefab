@@ -139,11 +139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e0f0b5e83cdbb4d98d0912af7d72a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToReload: 1
-  bulletPrefab: {fileID: 4180567490816088839, guid: fe54987cc4c25794296a5ca6557bbe53, type: 3}
+  ammoPrefab: {fileID: 4180567490816088839, guid: fe54987cc4c25794296a5ca6557bbe53, type: 3}
   spawnPosition: {fileID: 5515586868382646281}
   fireRate: 3
   generalBulletsCount: 30
+  timeToReload: 1
   bulletsCount: 10
 --- !u!61 &6367931041228963420
 BoxCollider2D:

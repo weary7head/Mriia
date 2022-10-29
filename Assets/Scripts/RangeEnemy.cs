@@ -1,9 +1,9 @@
-using System;
 using Player.Input;
 using UnityEngine;
 
 public class RangeEnemy : Animal
 {
+    [SerializeField] private Weapon weapon;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private LayerMask heroMask;
@@ -39,7 +39,7 @@ public class RangeEnemy : Animal
 
     public override void Attack()
     {
-        throw new System.NotImplementedException();
+        weapon.Shoot(-direction);
     }
 
     public override void GetDamage(float damage)
@@ -65,14 +65,5 @@ public class RangeEnemy : Animal
                 animator.SetFloat("Move", 0f);
                 break;
         }
-    }
-    
-    private Vector2 Parabola(Vector2 start, Vector2 end, float height, float t)
-    {
-        Func<float, float> f = x => -4 * height * x * x + 4 * height * x;
-
-        var mid = Vector2.Lerp(start, end, t);
-
-        return new Vector2(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t));
     }
 }

@@ -6,7 +6,7 @@ public class Bullet : Ammo
     {
         direction *= speed;
         direction = Vector3.ClampMagnitude(direction, speed);
-        transform.Translate(Time.deltaTime * direction, Space.World);
+        ammoTransform.Translate(Time.deltaTime * direction, Space.World);
     }
 
     private void OnCollisionEnter(Collision other)
