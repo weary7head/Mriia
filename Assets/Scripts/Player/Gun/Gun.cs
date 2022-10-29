@@ -1,29 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player.Gun
 {
-    public class Gun : MonoBehaviour
+    public class Gun : Weapon
     {
         [SerializeField] private float timeToReload = 2f;
-        [SerializeField] private Bullet bulletPrefab;
-        [SerializeField] private Transform spawnPosition;
-        [SerializeField] private float fireRate = 1.5f;
-        [SerializeField] private int generalBulletsCount = 30;
         [SerializeField] private int bulletsCount = 30;
-        private float nextTimeToFire = 0f;
-        private Queue<Bullet> bullets;
+        
+        public event Action OnStartReload;
+        public event Action OnEndReload;
+        
         private int currentBulletsCount;
 
         private void Start()
         {
             currentBulletsCount = bulletsCount;
-            bullets = new Queue<Bullet>(generalBulletsCount);
+            bullets = new Queue<Ammo>(generalBulletsCount);
             InitializeBullets();
         }
 
-        public void Shoot(Vector2 direction)
+        public override void Shoot(Vector2 direction)
         {
             if (currentBulletsCount == 0)
             {
@@ -32,38 +31,23 @@ namespace Player.Gun
             }
             if (Time.time >= nextTimeToFire)
             {
-                spawnPosition.localPosition = direction == Vector2.left ? new Vector3(-2, 0.5f, 0) : new Vector3(2, 0.5f, 0);
+                spawnPosition.localPosition = direction == Vector2.left ? new Vector3(-2.4f,0.6f,0) : new Vector3(2.4f,0.6f,0);
                 nextTimeToFire = Time.time + 1f / fireRate;
-                Bullet bullet = bullets.Dequeue();
+                Ammo bullet = bullets.Dequeue();
                 bullet.transform.position = spawnPosition.position;
                 bullet.gameObject.SetActive(true);
                 bullet.SetDirection(direction);
                 currentBulletsCount--;
-                StartCoroutine(EnqueueBullet(bullet));
+                StartCoroutine(EnqueueAmmo(bullet));
             }
-        }
-
-        private void InitializeBullets()
-        {
-            for (int i = 0; i < generalBulletsCount; i++)
-            {
-                Bullet bullet = Instantiate(bulletPrefab);
-                bullet.gameObject.SetActive(false);
-                bullets.Enqueue(bullet);
-            }
-        }
-
-        private IEnumerator EnqueueBullet(Bullet bullet, float seconds = 3f)
-        {
-            yield return new WaitForSeconds(seconds);
-            bullet.gameObject.SetActive(false);
-            bullets.Enqueue(bullet);
         }
 
         private IEnumerator Reload()
         {
+            OnStartReload?.Invoke();
             yield return new WaitForSeconds(timeToReload);
             currentBulletsCount = bulletsCount;
+            OnEndReload?.Invoke();
         }
     }
 }

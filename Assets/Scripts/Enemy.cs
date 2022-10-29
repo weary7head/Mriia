@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Enemy : MonoBehaviour
+public class Enemy : Animal
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Attack()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void GetDamage(float damage)
     {
-        
+        throw new System.NotImplementedException();
     }
 }
