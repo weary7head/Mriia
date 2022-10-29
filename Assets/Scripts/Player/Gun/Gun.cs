@@ -6,34 +6,46 @@ namespace Player.Gun
 {
     public class Gun : MonoBehaviour
     {
+        [SerializeField] private float timeToReload = 2f;
         [SerializeField] private Bullet bulletPrefab;
-        [SerializeField] private Camera camera;
         [SerializeField] private Transform spawnPosition;
         [SerializeField] private float fireRate = 1.5f;
+        [SerializeField] private int generalBulletsCount = 30;
         [SerializeField] private int bulletsCount = 30;
         private float nextTimeToFire = 0f;
         private Queue<Bullet> bullets;
+        private int currentBulletsCount;
 
         private void Start()
         {
-            bullets = new Queue<Bullet>(bulletsCount);
+            currentBulletsCount = bulletsCount;
+            bullets = new Queue<Bullet>(generalBulletsCount);
             InitializeBullets();
         }
 
-        private void Shoot(Vector2 direction)
+        public void Shoot(Vector2 direction)
         {
+            if (currentBulletsCount == 0)
+            {
+                StartCoroutine(Reload());
+                return;
+            }
             if (Time.time >= nextTimeToFire)
             {
+                spawnPosition.localPosition = direction == Vector2.left ? new Vector3(-2, 0.5f, 0) : new Vector3(2, 0.5f, 0);
                 nextTimeToFire = Time.time + 1f / fireRate;
                 Bullet bullet = bullets.Dequeue();
-                //laser.SetDirection(direction);
+                bullet.transform.position = spawnPosition.position;
+                bullet.gameObject.SetActive(true);
+                bullet.SetDirection(direction);
+                currentBulletsCount--;
                 StartCoroutine(EnqueueBullet(bullet));
             }
         }
 
         private void InitializeBullets()
         {
-            for (int i = 0; i < bulletsCount; i++)
+            for (int i = 0; i < generalBulletsCount; i++)
             {
                 Bullet bullet = Instantiate(bulletPrefab);
                 bullet.gameObject.SetActive(false);
@@ -46,6 +58,12 @@ namespace Player.Gun
             yield return new WaitForSeconds(seconds);
             bullet.gameObject.SetActive(false);
             bullets.Enqueue(bullet);
+        }
+
+        private IEnumerator Reload()
+        {
+            yield return new WaitForSeconds(timeToReload);
+            currentBulletsCount = bulletsCount;
         }
     }
 }
