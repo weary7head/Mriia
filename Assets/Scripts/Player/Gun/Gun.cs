@@ -5,20 +5,14 @@ using UnityEngine;
 
 namespace Player.Gun
 {
-    public class Gun : MonoBehaviour
+    public class Gun : Weapon
     {
         [SerializeField] private float timeToReload = 2f;
-        [SerializeField] private Bullet bulletPrefab;
-        [SerializeField] private Transform spawnPosition;
-        [SerializeField] private float fireRate = 1.5f;
-        [SerializeField] private int generalBulletsCount = 30;
         [SerializeField] private int bulletsCount = 30;
         
         public event Action OnStartReload;
         public event Action OnEndReload;
         
-        private float nextTimeToFire = 0f;
-        private Queue<Bullet> bullets;
         private int currentBulletsCount;
 
         private void Start()

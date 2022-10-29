@@ -1,4 +1,4 @@
-public enum HeroAnimationState
+public enum AnimationState
 {
     Idle,
     Walk,

@@ -11,7 +11,7 @@ namespace Player.Input
         private PlayerInputAction playerInputAction;
         private Vector2 direction;
         private Vector2 fireDirection;
-        private HeroAnimationState previouslyState;
+        private AnimationState previouslyState;
         private bool reloading = false;
 
         private void Awake()
@@ -28,7 +28,7 @@ namespace Player.Input
 
         private void Start()
         {
-            SetState(HeroAnimationState.Idle);
+            SetState(AnimationState.Idle);
             fireDirection = targetTransform.right;
         }
 
@@ -57,18 +57,18 @@ namespace Player.Input
             direction = playerInputAction.Player.Move.ReadValue<Vector2>();
             if (direction != Vector2.zero)
             {
-                SetState(HeroAnimationState.Walk);
+                SetState(AnimationState.Walk);
                 fireDirection = direction;
                 spriteRenderer.flipX = direction != Vector2.right;
                 targetTransform.Translate(direction * (speed * Time.deltaTime));
             }
             else
             {
-                SetState(HeroAnimationState.Idle);
+                SetState(AnimationState.Idle);
             }
         }
         
-        private void SetState(HeroAnimationState state)
+        private void SetState(AnimationState state)
         {
             if (state == previouslyState)
             {
@@ -77,20 +77,20 @@ namespace Player.Input
             previouslyState = state;
             switch (state)
             {
-                case HeroAnimationState.Idle:
+                case AnimationState.Idle:
                     animator.SetBool("Attack", false);
                     animator.SetFloat("Move", 0f);
                     break;
-                case HeroAnimationState.Walk:
+                case AnimationState.Walk:
                     animator.SetBool("Attack", false);
                     animator.SetFloat("Move", 1f);
                     break;
-                case HeroAnimationState.Fire:
+                case AnimationState.Fire:
                     animator.SetBool("Attack", true);
                     animator.SetFloat("Move", 0f);
                     animator.SetBool("Reload", false);
                     break;
-                case HeroAnimationState.Reload:
+                case AnimationState.Reload:
                     animator.SetBool("Reload", true);
                     animator.SetBool("Attack", false);
                     break;
@@ -100,20 +100,20 @@ namespace Player.Input
         private void StartReload()
         {
             reloading = true;
-            SetState(HeroAnimationState.Reload);
+            SetState(AnimationState.Reload);
         }
 
         private void EndReload()
         {
             reloading = false;
-            SetState(HeroAnimationState.Fire);
+            SetState(AnimationState.Fire);
         }
 
         public override void Attack()
         {
             if (playerInputAction.Player.Fire.IsPressed())
             {
-                SetState(HeroAnimationState.Fire);
+                SetState(AnimationState.Fire);
                 gun.Shoot(fireDirection);
             }
         }
