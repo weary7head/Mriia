@@ -18,10 +18,6 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f )
-        {
-            offset.z += Input.GetAxis("Mouse ScrollWheel") * 3;
-        }
         
         transform.position = target.position + offset;
     }
