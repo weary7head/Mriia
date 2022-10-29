@@ -1,13 +1,17 @@
+using System;
 using UnityEngine;
 
 namespace Player.Input
 {
     public class PlayerInput : MonoBehaviour
     {
+        [SerializeField] private Gun.Gun gun;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform targetTransform;
         [SerializeField] private float speed;
         private PlayerInputAction playerInputAction;
+        private Vector2 direction;
+        private Vector2 fireDirection;
 
         private void Awake()
         {
@@ -17,6 +21,11 @@ namespace Player.Input
         private void OnEnable()
         {
             playerInputAction.Enable();
+        }
+
+        private void Start()
+        {
+            fireDirection = targetTransform.right;
         }
 
         private void Update()
@@ -32,9 +41,10 @@ namespace Player.Input
 
         private void Move()
         {
-            Vector2 direction = playerInputAction.Player.Move.ReadValue<Vector2>();
+            direction = playerInputAction.Player.Move.ReadValue<Vector2>();
             if (direction != Vector2.zero)
             {
+                fireDirection = direction;
                 spriteRenderer.flipY = direction != Vector2.right;
                 targetTransform.Translate(direction * speed * Time.deltaTime);
             }
@@ -42,9 +52,9 @@ namespace Player.Input
 
         private void Fire()
         {
-            if ( playerInputAction.Player.Fire.IsPressed())
+            if (playerInputAction.Player.Fire.IsPressed())
             {
-                Debug.Log("FIRE");
+                gun.Shoot(fireDirection);
             }
         }
     }

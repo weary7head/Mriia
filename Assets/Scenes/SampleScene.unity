@@ -361,6 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 828598927}
   - component: {fileID: 828598926}
+  - component: {fileID: 828598929}
   - component: {fileID: 828598928}
   m_Layer: 0
   m_Name: Square
@@ -445,9 +446,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 828598924}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e0f0b5e83cdbb4d98d0912af7d72a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5594037837739691023, guid: a6b1f4f342f587b4d9dcd09df325f200, type: 3}
+  camera: {fileID: 519420031}
+  spawnPosition: {fileID: 828598927}
+  fireRate: 1.5
+  bulletsCount: 30
+--- !u!114 &828598929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828598924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 866dce9dd8274f44c85538a117c82ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 828598928}
   spriteRenderer: {fileID: 828598926}
   targetTransform: {fileID: 828598927}
   speed: 5
