@@ -507,7 +507,7 @@ MonoBehaviour:
   spawnPosition: {fileID: 1074736103}
   fireRate: 1.5
   generalBulletsCount: 30
-  bulletsCount: 30
+  bulletsCount: 10
 --- !u!114 &1705824829
 MonoBehaviour:
   m_ObjectHideFlags: 0

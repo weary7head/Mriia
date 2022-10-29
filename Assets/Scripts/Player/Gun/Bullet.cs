@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Transform startPosition;
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float damage = 10f;
+
     private Vector3 direction;
 
     private void Update()
