@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,10 @@ namespace Player.Gun
         [SerializeField] private float fireRate = 1.5f;
         [SerializeField] private int generalBulletsCount = 30;
         [SerializeField] private int bulletsCount = 30;
+        
+        public event Action OnStartReload;
+        public event Action OnEndReload;
+        
         private float nextTimeToFire = 0f;
         private Queue<Bullet> bullets;
         private int currentBulletsCount;
@@ -32,7 +37,7 @@ namespace Player.Gun
             }
             if (Time.time >= nextTimeToFire)
             {
-                spawnPosition.localPosition = direction == Vector2.left ? new Vector3(-2, 0.5f, 0) : new Vector3(2, 0.5f, 0);
+                spawnPosition.localPosition = direction == Vector2.left ? new Vector3(-2.4f,0.6f,0) : new Vector3(2.4f,0.6f,0);
                 nextTimeToFire = Time.time + 1f / fireRate;
                 Bullet bullet = bullets.Dequeue();
                 bullet.transform.position = spawnPosition.position;
@@ -62,8 +67,10 @@ namespace Player.Gun
 
         private IEnumerator Reload()
         {
+            OnStartReload?.Invoke();
             yield return new WaitForSeconds(timeToReload);
             currentBulletsCount = bulletsCount;
+            OnEndReload?.Invoke();
         }
     }
 }
