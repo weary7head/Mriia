@@ -482,9 +482,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705824824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.52, y: -2.53, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1074736103}
   m_Father: {fileID: 0}
@@ -502,10 +502,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e0f0b5e83cdbb4d98d0912af7d72a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToReload: 2
-  bulletPrefab: {fileID: 5594037837739691023, guid: a6b1f4f342f587b4d9dcd09df325f200, type: 3}
+  timeToReload: 1
+  bulletPrefab: {fileID: 4180567490816088839, guid: fe54987cc4c25794296a5ca6557bbe53, type: 3}
   spawnPosition: {fileID: 1074736103}
-  fireRate: 1.5
+  fireRate: 3
   generalBulletsCount: 30
   bulletsCount: 10
 --- !u!114 &1705824829
@@ -524,4 +524,4 @@ MonoBehaviour:
   gun: {fileID: 1705824828}
   spriteRenderer: {fileID: 1705824826}
   targetTransform: {fileID: 1705824827}
-  speed: 5
+  speed: 4
