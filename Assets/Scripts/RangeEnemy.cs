@@ -1,4 +1,4 @@
-public class Enemy : Animal
+public class RangeEnemy : Animal
 {
     public override void Attack()
     {

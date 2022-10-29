@@ -2,13 +2,12 @@ using UnityEngine;
 
 namespace Player.Input
 {
-    public class Hero : MonoBehaviour
+    public class Hero : Animal
     {
         [SerializeField] private Animator animator;
         [SerializeField] private Gun.Gun gun;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform targetTransform;
-        [SerializeField] private float speed;
         private PlayerInputAction playerInputAction;
         private Vector2 direction;
         private Vector2 fireDirection;
@@ -42,7 +41,7 @@ namespace Player.Input
 
             if (reloading == false)
             {
-                Fire();
+                Attack();
             }
         }
 
@@ -61,20 +60,11 @@ namespace Player.Input
                 SetState(HeroAnimationState.Walk);
                 fireDirection = direction;
                 spriteRenderer.flipX = direction != Vector2.right;
-                targetTransform.Translate(direction * speed * Time.deltaTime);
+                targetTransform.Translate(direction * (speed * Time.deltaTime));
             }
             else
             {
                 SetState(HeroAnimationState.Idle);
-            }
-        }
-
-        private void Fire()
-        {
-            if (playerInputAction.Player.Fire.IsPressed())
-            {
-                SetState(HeroAnimationState.Fire);
-                gun.Shoot(fireDirection);
             }
         }
         
@@ -117,6 +107,20 @@ namespace Player.Input
         {
             reloading = false;
             SetState(HeroAnimationState.Fire);
+        }
+
+        public override void Attack()
+        {
+            if (playerInputAction.Player.Fire.IsPressed())
+            {
+                SetState(HeroAnimationState.Fire);
+                gun.Shoot(fireDirection);
+            }
+        }
+
+        public override void GetDamage(float damage)
+        {
+            health = Mathf.Clamp(health - damage, 0, 100);
         }
     }
 }
