@@ -1,24 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField]
-    private Transform target;
-    [SerializeField]
-    private Vector3 offset;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField, Range(0, 1)] private float smoothing = 0.2f;
+    [SerializeField] private Transform target;
+    [SerializeField] private Vector3 offset;
 
-    void Start()
+    void LateUpdate()
     {
-        offset.x = 0;
-        offset.y = 0;
-        offset.z = -10;
-    }
-
-    void Update()
-    {
-        
-        transform.position = target.position + offset;
+        cameraTransform.position = Vector3.Lerp(cameraTransform.position, target.position + offset, smoothing);
     }
 }

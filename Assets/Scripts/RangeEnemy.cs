@@ -32,6 +32,7 @@ public class RangeEnemy : Animal
         else
         {
             direction = -direction;
+            direction.y = 0;
             targetTransform.Translate(direction * (speed * Time.deltaTime));
             SetState(AnimationState.Walk);
         }
