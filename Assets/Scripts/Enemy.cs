@@ -48,8 +48,11 @@ public class Enemy : Animal
 
     public override void GetDamage(float damage)
     {
-        OnDie?.Invoke(this);
-        throw new System.NotImplementedException();
+        health = Mathf.Clamp(health - damage, 0, 100);
+        if (health == 0)
+        {
+            OnDie?.Invoke(this);
+        }
     }
     
     private void SetState(AnimationState state)

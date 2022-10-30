@@ -127,6 +127,9 @@ MonoBehaviour:
   gun: {fileID: 5515586867889846738}
   spriteRenderer: {fileID: 5515586867889846740}
   targetTransform: {fileID: 5515586867889846741}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &5515586867889846738
 MonoBehaviour:
   m_ObjectHideFlags: 0

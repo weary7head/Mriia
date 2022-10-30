@@ -9,6 +9,7 @@ namespace Player.Input
         [SerializeField] private Gun.Gun gun;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform targetTransform;
+        [SerializeField] private LayerMask enemyLayer;
         
         public override event Action<Animal> OnDie;
         
@@ -117,6 +118,20 @@ namespace Player.Input
         {
             if (playerInputAction.Player.Fire.IsPressed())
             {
+                RaycastHit2D hit;
+                hit = Physics2D.Raycast(targetTransform.position, fireDirection, Mathf.Infinity, enemyLayer);
+                Debug.Log(hit);
+                if (hit)
+                {
+            
+                    Animal animal = hit.transform.gameObject.GetComponent<Animal>();
+                    Debug.Log(animal.name);
+                    gun.SetTarget(animal);
+                }
+                else
+                {
+                    gun.SetTarget(null);
+                }
                 SetState(AnimationState.Fire);
                 gun.Shoot(fireDirection);
             }
@@ -125,6 +140,10 @@ namespace Player.Input
         public override void GetDamage(float damage)
         {
             health = Mathf.Clamp(health - damage, 0, 100);
+            if (health == 0)
+            {
+                OnDie?.Invoke(this);
+            }
         }
     }
 }

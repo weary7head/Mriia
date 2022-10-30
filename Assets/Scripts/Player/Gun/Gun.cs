@@ -34,6 +34,7 @@ namespace Player.Gun
                 spawnPosition.localPosition = direction == Vector2.left ? new Vector3(-2.4f,0.6f,0) : new Vector3(2.4f,0.6f,0);
                 nextTimeToFire = Time.time + 1f / fireRate;
                 Ammo bullet = Instantiate(ammoPrefab);
+                bullet.SetTarget(animal);
                 bullet.transform.position = spawnPosition.position;
                 bullet.gameObject.SetActive(true);
                 bullet.SetDirection(direction);

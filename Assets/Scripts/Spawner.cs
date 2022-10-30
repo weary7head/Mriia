@@ -16,12 +16,13 @@ public class Spawner : MonoBehaviour
     public void Spawn()
     {
         Animal animal = Instantiate(prefabs[Random.Range(0, prefabs.Count)], spawnPositions[index].position, Quaternion.identity);
+        animal.OnDie += EnemyDie;
         animals.Add(animal);
     }
 
     private void EnemyDie(Animal animal)
     {
         animals.Remove(animal);
-        Destroy(animal);
+        Destroy(animal.gameObject);
     }
 }

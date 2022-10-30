@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7295228703749068278}
   - component: {fileID: 7295228703749068169}
   - component: {fileID: 7295228703749068276}
+  - component: {fileID: 1854690212304204508}
   m_Layer: 6
   m_Name: Svinopes
   m_TagString: Untagged
@@ -127,3 +128,29 @@ MonoBehaviour:
     m_Bits: 8
   targetTransform: {fileID: 7295228703749068279}
   attackRange: 10
+--- !u!61 &1854690212304204508
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295228703749068168}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12678361, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.15, y: 8.86}
+    newSize: {x: 5.15, y: 8.86}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.4112554, y: 8.86}
+  m_EdgeRadius: 0

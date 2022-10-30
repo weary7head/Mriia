@@ -11,6 +11,7 @@ public abstract class Weapon : MonoBehaviour
     
     protected float nextTimeToFire = 0f;
     protected Queue<Ammo> bullets;
+    protected Animal animal;
     
     protected IEnumerator EnqueueAmmo(Ammo ammo, float seconds = 3f)
     {
@@ -27,6 +28,11 @@ public abstract class Weapon : MonoBehaviour
             bottle.gameObject.SetActive(false);
             bullets.Enqueue(bottle);
         }
+    }
+
+    public void SetTarget(Animal animal)
+    {
+        this.animal = animal;
     }
 
     public abstract void Shoot(Vector2 direction);
