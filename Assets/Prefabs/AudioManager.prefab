@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7727543718213122093
+--- !u!1 &937963069701209618
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2404215635229447348}
-  - component: {fileID: 5833000739856106727}
+  - component: {fileID: 5004528364587659074}
+  - component: {fileID: 6932580347822232098}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2404215635229447348
+--- !u!4 &5004528364587659074
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7727543718213122093}
+  m_GameObject: {fileID: 937963069701209618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5833000739856106727
+--- !u!114 &6932580347822232098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7727543718213122093}
+  m_GameObject: {fileID: 937963069701209618}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67ce0f2c0308e6f4ca27fcc4b2196355, type: 3}
@@ -49,7 +49,89 @@ MonoBehaviour:
     clip: {fileID: 0}
     volume: 0
     pitch: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: MainMenu
+    clip: {fileID: 8300000, guid: 273d6e6342bbeed4abca68a81b2fe3f6, type: 3}
+    volume: 1
     pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameBGShoot
+    clip: {fileID: 8300000, guid: bfcb29d05025f7446a2c4e1e1db5fae1, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameBGWind
+    clip: {fileID: 8300000, guid: 552c2f2363f8e964689eeff07d2f9206, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: BaseRadioSound2
+    clip: {fileID: 8300000, guid: 01805ceaee841c8459e6bd259257e90c, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: BaseRadioSound3
+    clip: {fileID: 8300000, guid: 5ae548f32be90c945ab54535dd887d7b, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: PigDeath
+    clip: {fileID: 8300000, guid: dd1bd8e254e02ac47810f8eed19a4326, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Explotion
+    clip: {fileID: 8300000, guid: 56e12c49118abc64c935cbc613f3c64d, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: MenuClickSound
+    clip: {fileID: 8300000, guid: 5f4dc1088e3038b46bbc17d9f92ba3cd, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: 704fce1df41ac5f40b13f66307b1d061, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Welder
+    clip: {fileID: 8300000, guid: f4fb483701f14bb49ae7a0e8b43f5391, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 826af181d8c90854e8634f706e3fd337, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: BodyHit
+    clip: {fileID: 8300000, guid: 0a2b2407a38d7ab4ea729489fb7435a5, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: PickUpItem
+    clip: {fileID: 8300000, guid: 3d4df08f90e86de47b6946775fb9a6bd, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Reload
+    clip: {fileID: 8300000, guid: a3820ea403528ee4db3f2d935f26305b, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
