@@ -61,7 +61,15 @@ public class GameController : MonoBehaviour
     {
         currentWave++;
         allKilled = true;
-        mriiaSprites[currentSprite].SetActive(false);
+        if (currentSprite != 1)
+        {
+            mriiaSprites[currentSprite].SetActive(false);
+        }
+        else
+        {
+            text.gameObject.SetActive(true);
+            text.text = "Вітаю, Солід Гусь, ви вберегли Мрію! Слава Україні!";
+        }
         currentSprite++;
         waveComing = false;
         currentEnemiesCount = 0;

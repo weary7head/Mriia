@@ -5,6 +5,8 @@ namespace Player.Input
 {
     public class Hero : Animal
     {
+        [SerializeField] private AudioClip clip;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private Animator animator;
         [SerializeField] private Gun.Gun gun;
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -133,6 +135,7 @@ namespace Player.Input
                 }
                 SetState(AnimationState.Fire);
                 gun.Shoot(fireDirection);
+                audioSource.Play();
             }
         }
 
