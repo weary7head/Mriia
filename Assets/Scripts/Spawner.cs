@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPositions;
     [SerializeField] private List<Animal> prefabs;
+    public event Action AllEnemiesDied;
     private List<Animal> animals = new List<Animal>();
     private int index = 0;
     
@@ -24,5 +27,9 @@ public class Spawner : MonoBehaviour
     {
         animals.Remove(animal);
         Destroy(animal.gameObject);
+        if (animals.Count == 0)
+        {
+            AllEnemiesDied?.Invoke();
+        }
     }
 }

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoTransform: {fileID: 8727016967958563791}
   speed: 10
-  damage: 10
+  damage: 50
 --- !u!50 &-6453209216083301869
 Rigidbody2D:
   serializedVersion: 4
