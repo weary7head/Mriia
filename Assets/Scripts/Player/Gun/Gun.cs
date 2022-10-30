@@ -9,7 +9,7 @@ namespace Player.Gun
     {
         [SerializeField] private float timeToReload = 2f;
         [SerializeField] private int bulletsCount = 30;
-        
+        private ParticleSystem ps;
         public event Action OnStartReload;
         public event Action OnEndReload;
         
@@ -19,11 +19,13 @@ namespace Player.Gun
         {
             currentBulletsCount = bulletsCount;
             bullets = new Queue<Ammo>(generalBulletsCount);
+            ps = GameObject.Find("shoot_eff").GetComponent<ParticleSystem>();
             InitializeBullets();
         }
 
         public override void Shoot(Vector2 direction)
         {
+            
             if (currentBulletsCount == 0)
             {
                 StartCoroutine(Reload());
@@ -39,6 +41,7 @@ namespace Player.Gun
                 bullet.SetDirection(direction);
                 currentBulletsCount--;
                 StartCoroutine(EnqueueAmmo(bullet));
+                ps.Play();
             }
         }
 
