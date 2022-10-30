@@ -1,26 +1,26 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Ammo
 {
-    [SerializeField] private Transform startPosition;
-    [SerializeField] private float speed = 10.0f;
-    [SerializeField] private float damage = 10f;
-    private Vector3 direction;
+    private void Start()
+    {
+        Destroy(gameObject, 3f);
+    }
 
     private void Update()
     {
         direction *= speed;
         direction = Vector3.ClampMagnitude(direction, speed);
-        transform.Translate(Time.deltaTime * direction, Space.World);
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-       
-    }
-
-    public void SetDirection(Vector3 direction)
-    {
-        this.direction = direction;
+        ammoTransform.Translate(Time.deltaTime * direction, Space.World);
+        if (target == null)
+        {
+            return;
+        }
+        if ((target.transform.position - ammoTransform.position).sqrMagnitude <= 3)
+        {
+            Debug.Log("TRUE");
+            target.GetDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,18 +1,26 @@
+using System;
 using UnityEngine;
 
 namespace Player.Input
 {
-    public class Hero : MonoBehaviour
+    public class Hero : Animal
     {
+        [SerializeField] private AudioClip clip;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private Animator animator;
         [SerializeField] private Gun.Gun gun;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform targetTransform;
-        [SerializeField] private float speed;
+        [SerializeField] private LayerMask enemyLayer;
+        
+        public override event Action<Animal> OnDie;
+        public event Action<float> HealthChanged;
+        
         private PlayerInputAction playerInputAction;
         private Vector2 direction;
         private Vector2 fireDirection;
-        private HeroAnimationState previouslyState;
+        private AnimationState previouslyState;
+        private bool reloading = false;
 
         private void Awake()
         {
@@ -22,26 +30,34 @@ namespace Player.Input
         private void OnEnable()
         {
             playerInputAction.Enable();
+            gun.OnStartReload += StartReload;
+            gun.OnEndReload += EndReload;
         }
 
         private void Start()
         {
-            SetState(HeroAnimationState.Idle);
+            SetState(AnimationState.Idle);
             fireDirection = targetTransform.right;
         }
 
         private void Update()
         {
-            if ( playerInputAction.Player.Fire.IsPressed() == false)
+            if (playerInputAction.Player.Fire.IsPressed() == false && reloading == false)
             {
                 Move();
             }
-            Fire();
+
+            if (reloading == false)
+            {
+                Attack();
+            }
         }
 
         private void OnDisable()
         {
             playerInputAction.Disable();
+            gun.OnStartReload -= StartReload;
+            gun.OnEndReload -= EndReload;
         }
 
         private void Move()
@@ -49,27 +65,18 @@ namespace Player.Input
             direction = playerInputAction.Player.Move.ReadValue<Vector2>();
             if (direction != Vector2.zero)
             {
-                SetState(HeroAnimationState.Walk);
+                SetState(AnimationState.Walk);
                 fireDirection = direction;
                 spriteRenderer.flipX = direction != Vector2.right;
-                targetTransform.Translate(direction * speed * Time.deltaTime);
+                targetTransform.Translate(direction * (speed * Time.deltaTime));
             }
             else
             {
-                SetState(HeroAnimationState.Idle);
-            }
-        }
-
-        private void Fire()
-        {
-            if (playerInputAction.Player.Fire.IsPressed())
-            {
-                SetState(HeroAnimationState.Fire);
-                gun.Shoot(fireDirection);
+                SetState(AnimationState.Idle);
             }
         }
         
-        private void SetState(HeroAnimationState state)
+        private void SetState(AnimationState state)
         {
             if (state == previouslyState)
             {
@@ -78,18 +85,67 @@ namespace Player.Input
             previouslyState = state;
             switch (state)
             {
-                case HeroAnimationState.Idle:
+                case AnimationState.Idle:
                     animator.SetBool("Attack", false);
                     animator.SetFloat("Move", 0f);
                     break;
-                case HeroAnimationState.Walk:
+                case AnimationState.Walk:
                     animator.SetBool("Attack", false);
                     animator.SetFloat("Move", 1f);
                     break;
-                case HeroAnimationState.Fire:
+                case AnimationState.Fire:
                     animator.SetBool("Attack", true);
                     animator.SetFloat("Move", 0f);
+                    animator.SetBool("Reload", false);
                     break;
+                case AnimationState.Reload:
+                    animator.SetBool("Reload", true);
+                    animator.SetBool("Attack", false);
+                    break;
+            }
+        }
+
+        private void StartReload()
+        {
+            reloading = true;
+            SetState(AnimationState.Reload);
+        }
+
+        private void EndReload()
+        {
+            reloading = false;
+            SetState(AnimationState.Fire);
+        }
+
+        public override void Attack()
+        {
+            if (playerInputAction.Player.Fire.IsPressed())
+            {
+                RaycastHit2D hit;
+                hit = Physics2D.Raycast(targetTransform.position, fireDirection, Mathf.Infinity, enemyLayer);
+                if (hit)
+                {
+            
+                    Animal animal = hit.transform.gameObject.GetComponent<Animal>();
+                    gun.SetTarget(animal);
+                }
+                else
+                {
+                    gun.SetTarget(null);
+                }
+                SetState(AnimationState.Fire);
+                gun.Shoot(fireDirection);
+                audioSource.Play();
+            }
+        }
+
+        public override void GetDamage(float damage)
+        {
+            health = Mathf.Clamp(health - damage, 0, 100);
+            HealthChanged?.Invoke(health);
+            if (health == 0)
+            {
+                OnDie?.Invoke(this);
             }
         }
     }
