@@ -12,6 +12,7 @@ namespace Player.Input
         [SerializeField] private LayerMask enemyLayer;
         
         public override event Action<Animal> OnDie;
+        public event Action<float> HealthChanged;
         
         private PlayerInputAction playerInputAction;
         private Vector2 direction;
@@ -120,12 +121,10 @@ namespace Player.Input
             {
                 RaycastHit2D hit;
                 hit = Physics2D.Raycast(targetTransform.position, fireDirection, Mathf.Infinity, enemyLayer);
-                Debug.Log(hit);
                 if (hit)
                 {
             
                     Animal animal = hit.transform.gameObject.GetComponent<Animal>();
-                    Debug.Log(animal.name);
                     gun.SetTarget(animal);
                 }
                 else
@@ -140,6 +139,7 @@ namespace Player.Input
         public override void GetDamage(float damage)
         {
             health = Mathf.Clamp(health - damage, 0, 100);
+            HealthChanged?.Invoke(health);
             if (health == 0)
             {
                 OnDie?.Invoke(this);
