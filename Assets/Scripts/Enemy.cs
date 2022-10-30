@@ -7,7 +7,7 @@ public class Enemy : Animal
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private LayerMask heroMask;
     [SerializeField] private Transform targetTransform;
-    [SerializeField] private float attackRange = 100f;
+    [SerializeField] private float attackRange = 10;
     private Vector2 direction;
     private Animal hero;
     private AnimationState previouslyState;
@@ -31,6 +31,7 @@ public class Enemy : Animal
         else
         {
             direction = -direction;
+            direction.y = 0;
             targetTransform.Translate(direction * (speed * Time.deltaTime));
             SetState(AnimationState.Walk);
         }
