@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8727016967958563791}
   - component: {fileID: 6010518788212580786}
   - component: {fileID: 4180567490816088839}
+  - component: {fileID: -6453209216083301869}
   m_Layer: 0
   m_Name: Ammo
   m_TagString: Untagged
@@ -100,3 +101,24 @@ MonoBehaviour:
   ammoTransform: {fileID: 8727016967958563791}
   speed: 10
   damage: 10
+--- !u!50 &-6453209216083301869
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2861180950441041993}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

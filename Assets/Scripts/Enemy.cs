@@ -1,3 +1,4 @@
+using System;
 using Player.Input;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ public class Enemy : Animal
     [SerializeField] private LayerMask heroMask;
     [SerializeField] private Transform targetTransform;
     [SerializeField] private float attackRange = 10;
+    
+    public override event Action<Animal> OnDie;
+    
     private Vector2 direction;
     private Animal hero;
     private AnimationState previouslyState;
@@ -44,6 +48,7 @@ public class Enemy : Animal
 
     public override void GetDamage(float damage)
     {
+        OnDie?.Invoke(this);
         throw new System.NotImplementedException();
     }
     

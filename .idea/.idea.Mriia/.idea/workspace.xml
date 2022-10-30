@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5c20e1eb-e319-4660-bb9a-e96abff03b23" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mriia/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mriia/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Svinopes.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Svinopes.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Animal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Animal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/BottleThrower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/BottleThrower.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Gun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Input/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Input/Hero.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/RangeEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RangeEnemy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +26,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Gun/Gun.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Gun/Weapon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RangeEnemy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spawner.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

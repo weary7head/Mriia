@@ -19,7 +19,7 @@ namespace Player.Gun
         {
             currentBulletsCount = bulletsCount;
             bullets = new Queue<Ammo>(generalBulletsCount);
-            InitializeBullets();
+           // InitializeBullets();
         }
 
         public override void Shoot(Vector2 direction)
@@ -33,12 +33,12 @@ namespace Player.Gun
             {
                 spawnPosition.localPosition = direction == Vector2.left ? new Vector3(-2.4f,0.6f,0) : new Vector3(2.4f,0.6f,0);
                 nextTimeToFire = Time.time + 1f / fireRate;
-                Ammo bullet = bullets.Dequeue();
+                Ammo bullet = Instantiate(ammoPrefab);
                 bullet.transform.position = spawnPosition.position;
                 bullet.gameObject.SetActive(true);
                 bullet.SetDirection(direction);
                 currentBulletsCount--;
-                StartCoroutine(EnqueueAmmo(bullet));
+               // StartCoroutine(EnqueueAmmo(bullet));
             }
         }
 
