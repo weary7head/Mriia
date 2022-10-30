@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Player.Input
@@ -8,6 +9,9 @@ namespace Player.Input
         [SerializeField] private Gun.Gun gun;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Transform targetTransform;
+        
+        public override event Action<Animal> OnDie;
+        
         private PlayerInputAction playerInputAction;
         private Vector2 direction;
         private Vector2 fireDirection;
