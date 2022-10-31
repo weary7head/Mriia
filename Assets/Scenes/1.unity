@@ -27175,9 +27175,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c5e6a6cc7119caf42bd7d286ff1ff5e8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6d1dd7f42167a8349b5466916fc1c3b6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -35426,7 +35426,7 @@ PrefabInstance:
     - target: {fileID: 5515586867889846739, guid: 2afe698dd0735c24ab905b5a0c261fc6, type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: c5e6a6cc7119caf42bd7d286ff1ff5e8, type: 3}
+      objectReference: {fileID: 8300000, guid: 6d1dd7f42167a8349b5466916fc1c3b6, type: 3}
     - target: {fileID: 5515586867889846739, guid: 2afe698dd0735c24ab905b5a0c261fc6, type: 3}
       propertyPath: audioSource
       value: 
@@ -35506,7 +35506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5561277869058097694, guid: fc2f34e345acd1a4e99b90d85d35d6e8, type: 3}
       propertyPath: enemiesPerRound
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5561277869058097694, guid: fc2f34e345acd1a4e99b90d85d35d6e8, type: 3}
       propertyPath: mriiaSprites.Array.size
